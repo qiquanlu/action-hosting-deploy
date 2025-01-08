@@ -158,6 +158,9 @@ export async function deployProductionSite(
 ) {
   const { projectId, target, modules,firebaseToolsVersion } = productionDeployConfig;
 
+  console.log(`modules:${modules}`);
+  console.log(`generate:${modules ? modules:"hosting"}`);
+  
   const deploymentText = await execWithCredentials(
     ["deploy", "--only", `${modules ? modules:"hosting"}${target ? ":" + target : ""}`],
     projectId,
