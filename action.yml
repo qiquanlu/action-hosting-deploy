@@ -64,6 +64,10 @@ inputs:
       Disable auto-commenting with the preview channel URL to the pull request
     default: "false"
     required: false
+  modules:
+    description: >-
+      Allowing deploy multiple modules, for example hosting, functions
+    required: false
 outputs:
   urls:
     description: The url(s) deployed to
