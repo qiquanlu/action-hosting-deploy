@@ -43,6 +43,7 @@ export type ProductionSuccessResult = {
 type DeployConfig = {
   projectId: string;
   target?: string;
+  modules?: string;
   // Optional version specification for firebase-tools. Defaults to `latest`.
   firebaseToolsVersion?: string;
 };
@@ -129,9 +130,9 @@ export async function deployPreview(
   gacFilename: string,
   deployConfig: ChannelDeployConfig
 ) {
-  const { projectId, channelId, target, expires, firebaseToolsVersion } =
+  const { projectId, channelId, target, modules, expires, firebaseToolsVersion } =
     deployConfig;
-
+//TODO:command deploy hosting and function based on modules
   const deploymentText = await execWithCredentials(
     [
       "hosting:channel:deploy",
@@ -155,10 +156,10 @@ export async function deployProductionSite(
   gacFilename,
   productionDeployConfig: ProductionDeployConfig
 ) {
-  const { projectId, target, firebaseToolsVersion } = productionDeployConfig;
+  const { projectId, target, modules,firebaseToolsVersion } = productionDeployConfig;
 
   const deploymentText = await execWithCredentials(
-    ["deploy", "--only", `hosting${target ? ":" + target : ""}`],
+    ["deploy", "--only", `${modules ? modules:"hosting"}${target ? ":" + target : ""}`],
     projectId,
     gacFilename,
     { firebaseToolsVersion }
