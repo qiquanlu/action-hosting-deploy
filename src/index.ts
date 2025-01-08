@@ -49,6 +49,7 @@ const token = process.env.GITHUB_TOKEN || getInput("repoToken");
 const octokit = token ? getOctokit(token) : undefined;
 const entryPoint = getInput("entryPoint");
 const target = getInput("target");
+const modules = getInput("modules");
 const firebaseToolsVersion = getInput("firebaseToolsVersion");
 const disableComment = getInput("disableComment");
 
@@ -93,6 +94,7 @@ async function run() {
       const deployment = await deployProductionSite(gacFilename, {
         projectId,
         target,
+        modules,
         firebaseToolsVersion,
       });
       if (deployment.status === "error") {
@@ -121,6 +123,7 @@ async function run() {
       expires,
       channelId,
       target,
+      modules,
       firebaseToolsVersion,
     });
 

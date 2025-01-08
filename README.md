@@ -151,6 +151,10 @@ The version of `firebase-tools` to use. If not specified, defaults to `latest`.
 
 Disable commenting in a PR with the preview URL.
 
+### `modules` _{strint}_
+
+Allow deploy additional modules like functions, for example `hosting,functions`
+
 ## Outputs
 
 Values emitted by this action that can be consumed by other actions later in your workflow
