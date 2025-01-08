@@ -90,7 +90,7 @@ async function run() {
     endGroup();
 
     if (isProductionDeploy) {
-      startGroup("Deploying to production site");
+      startGroup(`Deploying to production site: ${modules}`);
       const deployment = await deployProductionSite(gacFilename, {
         projectId,
         target,
